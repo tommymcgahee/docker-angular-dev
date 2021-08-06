@@ -1,0 +1,15 @@
+{
+  "name": "node_development",
+  "version": "1.0.0",
+  "description": "NodeJS on Docker",
+  "author": "Tommy McGahee <tommy.mcgahee@gmail.com>",
+  "repository": "",
+  "license": "",
+  "scripts": {
+    "angular-server": "cd app && ng serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/cli": "^12.2.0"
+  }
+}

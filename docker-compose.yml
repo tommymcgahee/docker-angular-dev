@@ -1,0 +1,19 @@
+version: "3"
+services:
+  node:
+      # Variables automatically imported from .env
+      build: 
+        context: .
+        args: 
+          - CUSTOM_NODE_VERSION=${NODE_VERSION}
+      environment: 
+        - NODE_ENV=${NODE_ENV}
+        - NODE_PORT=${NODE_PORT}
+      expose: 
+        - ${NODE_PORT}
+        - ${ANGULAR_PORT}
+      ports:
+        - ${DOCKER_PORT}:${NODE_PORT}
+        - ${DOCKER_ANGULAR_PORT}:${ANGULAR_PORT}
+      volumes:
+        - ./:/usr/src/app
