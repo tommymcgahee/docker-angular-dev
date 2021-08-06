@@ -1,19 +1,16 @@
 version: "3"
 services:
   node:
-      # Variables automatically imported from .env
       build: 
         context: .
         args: 
-          - CUSTOM_NODE_VERSION=${NODE_VERSION}
+          - NODE=14.17.4
+          - NODE_ENV=development
       environment: 
-        - NODE_ENV=${NODE_ENV}
-        - NODE_PORT=${NODE_PORT}
-      expose: 
-        - ${NODE_PORT}
-        - ${ANGULAR_PORT}
+        - NODE_ENV=development
       ports:
-        - ${DOCKER_PORT}:${NODE_PORT}
-        - ${DOCKER_ANGULAR_PORT}:${ANGULAR_PORT}
+        - 4200:4200
       volumes:
-        - ./:/usr/src/app
+        - .:/opt/node_app/app
+        - ./package.json:/opt/node_app/package.json
+        - ./package-lock.json:/opt/node_app/package-lock.json

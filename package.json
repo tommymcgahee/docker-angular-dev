@@ -1,14 +1,13 @@
 {
-  "name": "node_development",
+  "name": "docker_angular",
   "version": "1.0.0",
-  "description": "NodeJS on Docker",
+  "description": "Angular on Docker",
   "author": "Tommy McGahee <tommy.mcgahee@gmail.com>",
   "repository": "",
   "license": "",
   "scripts": {
-    "angular-server": "cd app && ng serve"
+    "serve": "cd app && ng serve --host 0.0.0.0 --port 4200"
   },
-  "dependencies": {},
   "devDependencies": {
     "@angular/cli": "^12.2.0"
   }

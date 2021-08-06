@@ -1,13 +1,23 @@
-ARG CUSTOM_NODE_VERSION
+ARG NODE=14.17.4
 
-FROM node:$CUSTOM_NODE_VERSION
+FROM node:$NODE
 
-WORKDIR /usr/src/app
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 
-COPY package.json ./
+EXPOSE 4200
 
-RUN npm install -g @angular/cli 
+RUN npm i npm@latest -g 
+# RUN npm i @angular/cli@^12.2.0 -g
 
-COPY . ./
+RUN mkdir /opt/node_app && chown node:node /opt/node_app
+WORKDIR /opt/node_app
 
-CMD cd ./app && ng serve --host 0.0.0.0 --port 4200
+USER node
+COPY --chown=node:node package.json package-lock.json* ./
+RUN npm install --no-optional && npm cache clean --force
+
+WORKDIR /opt/node_app/app
+COPY --chown=node:node . .
+
+CMD cd ./app && npm run serve
